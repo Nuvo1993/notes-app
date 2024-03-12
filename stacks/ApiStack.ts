@@ -1,4 +1,5 @@
 import { Api, StackContext, use } from "sst/constructs";
+import { AuthStack } from "./AuthStack";
 import { StorageStack } from "./StorageStack";
 
 export function ApiStack({ stack }: StackContext){
@@ -7,6 +8,7 @@ export function ApiStack({ stack }: StackContext){
     //Create the API
     const api = new Api(stack, "Api", {
         defaults:{ 
+            authorizer: "iam",
             function:{
                 bind: [table],
             },
